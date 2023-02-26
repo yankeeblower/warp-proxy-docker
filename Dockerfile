@@ -1,4 +1,6 @@
-ARG DEBIAN_RELEASE=jammy
+ARG DEBIAN_RELEASE=bullseye
+FROM docker.io/debian:$DEBIAN_RELEASE-slim
+ARG DEBIAN_RELEASE
 COPY pubkey.gpg entrypoint.sh /
 ENV DEBIAN_FRONTEND noninteractive
 RUN true && \
