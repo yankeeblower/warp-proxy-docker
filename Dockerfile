@@ -1,11 +1,11 @@
-ARG DEBIAN_RELEASE=bullseye
+ARG DEBIAN_RELEASE=grep DISTRIB_CODENAME /etc/lsb-release | cut -f2 -d'='
 FROM docker.io/debian:$DEBIAN_RELEASE-slim
 ARG DEBIAN_RELEASE
 COPY pubkey.gpg entrypoint.sh /
 ENV DEBIAN_FRONTEND noninteractive
 RUN true && \
     apt update && \
-    apt install -y gnupg ca-certificates libcap2-bin rinetd && \
+    apt install -y gnupg musl ca-certificates libcap2-bin rinetd && \
     apt-key add /pubkey.gpg && \
     echo "deb http://pkg.cloudflareclient.com/ $DEBIAN_RELEASE main" > /etc/apt/sources.list.d/cloudflare-client.list && \
     apt update && \
