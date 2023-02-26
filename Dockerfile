@@ -1,4 +1,4 @@
-ARG DEBIAN_RELEASE=$(grep DISTRIB_CODENAME /etc/lsb-release | cut -f2 -d'=')
+ARG DEBIAN_RELEASE=focal
 FROM docker.io/debian:$DEBIAN_RELEASE-slim
 ARG DEBIAN_RELEASE
 COPY pubkey.gpg entrypoint.sh /
